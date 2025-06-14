@@ -26,7 +26,7 @@ const Navigation = () => {
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div 
+          <button 
             className="flex items-center space-x-2 cursor-pointer hover-scale"
             onClick={() => navigate('/')}
           >
@@ -34,7 +34,7 @@ const Navigation = () => {
             <h1 className="text-2xl font-bold bg-gradient-to-r from-tomato-500 to-blueberry-500 bg-clip-text text-transparent">
               FoodieFlow
             </h1>
-          </div>
+          </button>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-6">

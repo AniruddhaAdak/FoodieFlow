@@ -9,6 +9,13 @@ import Footer from "./components/Footer";
 import Index from "./pages/Index";
 import Discover from "./pages/Discover";
 import Photos from "./pages/Photos";
+import BucketList from "./pages/BucketList";
+import Recipes from "./pages/Recipes";
+import Profile from "./pages/Profile";
+import Wishlist from "./pages/Wishlist";
+import Bookings from "./pages/Bookings";
+import Settings from "./pages/Settings";
+import MyReviews from "./pages/MyReviews";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,11 +33,13 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/discover" element={<Discover />} />
               <Route path="/photos" element={<Photos />} />
-              <Route path="/bucket-list" element={<Index />} />
-              <Route path="/recipes" element={<Index />} />
-              <Route path="/profile" element={<Index />} />
-              <Route path="/wishlist" element={<Index />} />
-              <Route path="/bookings" element={<Index />} />
+              <Route path="/bucket-list" element={<BucketList />} />
+              <Route path="/recipes" element={<Recipes />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/wishlist" element={<Wishlist />} />
+              <Route path="/bookings" element={<Bookings />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/my-reviews" element={<MyReviews />} />
               <Route path="/search" element={<Discover />} />
               <Route path="/location" element={<Discover />} />
               <Route path="*" element={<NotFound />} />
