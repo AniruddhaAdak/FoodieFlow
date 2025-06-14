@@ -1,6 +1,5 @@
-
 import { useState } from 'react';
-import Header from '@/components/Header';
+import { useNavigate } from 'react-router-dom';
 import RestaurantCard from '@/components/RestaurantCard';
 import PhotoCard from '@/components/PhotoCard';
 import BucketListItem from '@/components/BucketListItem';
@@ -8,10 +7,12 @@ import RecipeCard from '@/components/RecipeCard';
 import FilterBar from '@/components/FilterBar';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
-import { Plus, Utensils, Camera, ListChecks, ChefHat } from 'lucide-react';
+import { Plus, Utensils, Camera, ListChecks, ChefHat, Star, Users, MapPin, TrendingUp } from 'lucide-react';
 
 const Index = () => {
-  // Sample data
+  const navigate = useNavigate();
+
+  // Sample data (keeping existing data)
   const sampleRestaurants = [
     {
       id: '1',
@@ -49,6 +50,7 @@ const Index = () => {
     }
   ];
 
+  // ... keep existing code (sample data for photos, bucket list, recipes)
   const samplePhotos = [
     {
       id: '1',
@@ -127,28 +129,66 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
-      
-      {/* Hero Section */}
-      <section className="relative py-20 px-4">
+      {/* Enhanced Hero Section */}
+      <section className="relative py-20 px-4 overflow-hidden">
         <div className="absolute inset-0 food-gradient opacity-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-tomato-500/5 via-saffron-500/5 to-blueberry-500/5"></div>
+        
+        {/* Animated background elements */}
+        <div className="absolute top-10 left-10 w-20 h-20 bg-tomato-200/30 rounded-full animate-pulse"></div>
+        <div className="absolute top-32 right-20 w-16 h-16 bg-avocado-200/30 rounded-full animate-pulse delay-300"></div>
+        <div className="absolute bottom-20 left-32 w-24 h-24 bg-saffron-200/30 rounded-full animate-pulse delay-700"></div>
+        <div className="absolute bottom-32 right-10 w-18 h-18 bg-blueberry-200/30 rounded-full animate-pulse delay-500"></div>
+        
         <div className="container mx-auto text-center relative z-10">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
             <span className="bg-gradient-to-r from-tomato-500 via-saffron-500 to-blueberry-500 bg-clip-text text-transparent">
               Discover Your Next
             </span>
             <br />
             <span className="text-gray-900">Culinary Adventure</span>
           </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto animate-fade-in delay-200">
             Find amazing restaurants, share your foodie moments, and create your ultimate culinary bucket list
           </p>
+          
+          {/* Feature highlights */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 max-w-4xl mx-auto">
+            <div className="text-center p-4 bg-white/80 rounded-lg backdrop-blur-sm hover-scale">
+              <MapPin className="w-8 h-8 text-tomato-500 mx-auto mb-2" />
+              <div className="text-sm font-medium">Local Discovery</div>
+            </div>
+            <div className="text-center p-4 bg-white/80 rounded-lg backdrop-blur-sm hover-scale">
+              <Camera className="w-8 h-8 text-avocado-500 mx-auto mb-2" />
+              <div className="text-sm font-medium">Photo Sharing</div>
+            </div>
+            <div className="text-center p-4 bg-white/80 rounded-lg backdrop-blur-sm hover-scale">
+              <Star className="w-8 h-8 text-saffron-500 mx-auto mb-2" />
+              <div className="text-sm font-medium">Reviews & Ratings</div>
+            </div>
+            <div className="text-center p-4 bg-white/80 rounded-lg backdrop-blur-sm hover-scale">
+              <Users className="w-8 h-8 text-blueberry-500 mx-auto mb-2" />
+              <div className="text-sm font-medium">Food Community</div>
+            </div>
+          </div>
+          
           <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-            <Button size="lg" className="bg-tomato-500 hover:bg-tomato-600 text-white rounded-full px-8">
+            <Button 
+              size="lg" 
+              className="bg-tomato-500 hover:bg-tomato-600 text-white rounded-full px-8 hover-scale"
+              onClick={() => navigate('/discover')}
+            >
+              <TrendingUp className="w-5 h-5 mr-2" />
               Start Exploring
             </Button>
-            <Button size="lg" variant="outline" className="rounded-full px-8">
-              Learn More
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="rounded-full px-8 hover-scale hover:bg-white hover:shadow-lg transition-all duration-200"
+              onClick={() => navigate('/photos')}
+            >
+              <Camera className="w-5 h-5 mr-2" />
+              Share Photos
             </Button>
           </div>
         </div>
@@ -158,19 +198,19 @@ const Index = () => {
       <section className="container mx-auto px-4 pb-20">
         <Tabs defaultValue="discover" className="w-full">
           <TabsList className="grid w-full grid-cols-4 mb-8 bg-white rounded-full p-1 shadow-lg">
-            <TabsTrigger value="discover" className="flex items-center space-x-2 rounded-full">
+            <TabsTrigger value="discover" className="flex items-center space-x-2 rounded-full transition-all duration-200">
               <Utensils className="w-4 h-4" />
               <span className="hidden sm:inline">Discover</span>
             </TabsTrigger>
-            <TabsTrigger value="photos" className="flex items-center space-x-2 rounded-full">
+            <TabsTrigger value="photos" className="flex items-center space-x-2 rounded-full transition-all duration-200">
               <Camera className="w-4 h-4" />
               <span className="hidden sm:inline">Photos</span>
             </TabsTrigger>
-            <TabsTrigger value="bucketlist" className="flex items-center space-x-2 rounded-full">
+            <TabsTrigger value="bucketlist" className="flex items-center space-x-2 rounded-full transition-all duration-200">
               <ListChecks className="w-4 h-4" />
               <span className="hidden sm:inline">Bucket List</span>
             </TabsTrigger>
-            <TabsTrigger value="recipes" className="flex items-center space-x-2 rounded-full">
+            <TabsTrigger value="recipes" className="flex items-center space-x-2 rounded-full transition-all duration-200">
               <ChefHat className="w-4 h-4" />
               <span className="hidden sm:inline">Recipes</span>
             </TabsTrigger>
@@ -179,7 +219,11 @@ const Index = () => {
           <TabsContent value="discover" className="animate-fade-in">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-3xl font-bold text-gray-900">Discover Restaurants</h2>
-              <Button variant="outline" className="rounded-full">
+              <Button 
+                variant="outline" 
+                className="rounded-full hover-scale"
+                onClick={() => navigate('/discover')}
+              >
                 <Plus className="w-4 h-4 mr-2" />
                 Add Restaurant
               </Button>
@@ -190,12 +234,25 @@ const Index = () => {
                 <RestaurantCard key={restaurant.id} restaurant={restaurant} />
               ))}
             </div>
+            <div className="text-center mt-8">
+              <Button 
+                variant="outline" 
+                onClick={() => navigate('/discover')}
+                className="rounded-full px-8 hover-scale"
+              >
+                View All Restaurants
+              </Button>
+            </div>
           </TabsContent>
 
           <TabsContent value="photos" className="animate-fade-in">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-3xl font-bold text-gray-900">Food Photos</h2>
-              <Button variant="outline" className="rounded-full">
+              <Button 
+                variant="outline" 
+                className="rounded-full hover-scale"
+                onClick={() => navigate('/photos')}
+              >
                 <Plus className="w-4 h-4 mr-2" />
                 Share Photo
               </Button>
@@ -205,12 +262,21 @@ const Index = () => {
                 <PhotoCard key={photo.id} photo={photo} />
               ))}
             </div>
+            <div className="text-center mt-8">
+              <Button 
+                variant="outline" 
+                onClick={() => navigate('/photos')}
+                className="rounded-full px-8 hover-scale"
+              >
+                View All Photos
+              </Button>
+            </div>
           </TabsContent>
 
           <TabsContent value="bucketlist" className="animate-fade-in">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-3xl font-bold text-gray-900">Culinary Bucket List</h2>
-              <Button variant="outline" className="rounded-full">
+              <Button variant="outline" className="rounded-full hover-scale">
                 <Plus className="w-4 h-4 mr-2" />
                 Add Goal
               </Button>
@@ -225,7 +291,7 @@ const Index = () => {
           <TabsContent value="recipes" className="animate-fade-in">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-3xl font-bold text-gray-900">Popular Recipes</h2>
-              <Button variant="outline" className="rounded-full">
+              <Button variant="outline" className="rounded-full hover-scale">
                 <Plus className="w-4 h-4 mr-2" />
                 Add Recipe
               </Button>
